@@ -38,6 +38,8 @@ class ViewController: UIViewController {
         
         verticalStack.anchor(top: view.safeAreaLayoutGuide.topAnchor, leading: view.leadingAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, trailing: view.trailingAnchor)
         
+        verticalStack.bringSubviewToFront(cardDeckView)
+        
         verticalStack.isLayoutMarginsRelativeArrangement = true
         verticalStack.layoutMargins = .init(top: 0, left: 12, bottom: 0, right: 12)
     }
