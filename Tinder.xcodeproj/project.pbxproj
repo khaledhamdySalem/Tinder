@@ -7,15 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EA8EFE6128B6857C0066B94B /* HomeBottomStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8EFE6028B6857C0066B94B /* HomeBottomStackView.swift */; };
+		EA8EFE6428B6868E0066B94B /* HomeTopStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8EFE6328B6868E0066B94B /* HomeTopStackView.swift */; };
+		EA8EFE6728B696960066B94B /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8EFE6628B696960066B94B /* CardView.swift */; };
 		EAD553BA28B546F500BB52AD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD553B928B546F500BB52AD /* AppDelegate.swift */; };
 		EAD553BC28B546F500BB52AD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD553BB28B546F500BB52AD /* SceneDelegate.swift */; };
 		EAD553BE28B546F500BB52AD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD553BD28B546F500BB52AD /* ViewController.swift */; };
 		EAD553C128B546F500BB52AD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EAD553BF28B546F500BB52AD /* Main.storyboard */; };
 		EAD553C328B546FA00BB52AD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EAD553C228B546FA00BB52AD /* Assets.xcassets */; };
 		EAD553C628B546FA00BB52AD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EAD553C428B546FA00BB52AD /* LaunchScreen.storyboard */; };
+		EAD553CF28B550B700BB52AD /* Extensions+UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD553CE28B550B600BB52AD /* Extensions+UIView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EA8EFE6028B6857C0066B94B /* HomeBottomStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeBottomStackView.swift; sourceTree = "<group>"; };
+		EA8EFE6328B6868E0066B94B /* HomeTopStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTopStackView.swift; sourceTree = "<group>"; };
+		EA8EFE6628B696960066B94B /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		EAD553B628B546F500BB52AD /* Tinder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tinder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAD553B928B546F500BB52AD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EAD553BB28B546F500BB52AD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -24,6 +31,7 @@
 		EAD553C228B546FA00BB52AD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EAD553C528B546FA00BB52AD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EAD553C728B546FA00BB52AD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EAD553CE28B550B600BB52AD /* Extensions+UIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extensions+UIView.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,6 +45,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EA8EFE6228B6867D0066B94B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				EA8EFE6328B6868E0066B94B /* HomeTopStackView.swift */,
+				EA8EFE6028B6857C0066B94B /* HomeBottomStackView.swift */,
+				EA8EFE6628B696960066B94B /* CardView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		EA8EFE6528B694F00066B94B /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				EAD553BD28B546F500BB52AD /* ViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		EAD553AD28B546F500BB52AD = {
 			isa = PBXGroup;
 			children = (
@@ -56,15 +82,33 @@
 		EAD553B828B546F500BB52AD /* Tinder */ = {
 			isa = PBXGroup;
 			children = (
-				EAD553B928B546F500BB52AD /* AppDelegate.swift */,
-				EAD553BB28B546F500BB52AD /* SceneDelegate.swift */,
-				EAD553BD28B546F500BB52AD /* ViewController.swift */,
-				EAD553BF28B546F500BB52AD /* Main.storyboard */,
-				EAD553C228B546FA00BB52AD /* Assets.xcassets */,
-				EAD553C428B546FA00BB52AD /* LaunchScreen.storyboard */,
 				EAD553C728B546FA00BB52AD /* Info.plist */,
+				EAD553CD28B5471100BB52AD /* Supporting Files */,
+				EA8EFE6528B694F00066B94B /* Controller */,
+				EAD553D028B550B900BB52AD /* Extension */,
+				EA8EFE6228B6867D0066B94B /* Views */,
 			);
 			path = Tinder;
+			sourceTree = "<group>";
+		};
+		EAD553CD28B5471100BB52AD /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				EAD553BF28B546F500BB52AD /* Main.storyboard */,
+				EAD553B928B546F500BB52AD /* AppDelegate.swift */,
+				EAD553BB28B546F500BB52AD /* SceneDelegate.swift */,
+				EAD553C228B546FA00BB52AD /* Assets.xcassets */,
+				EAD553C428B546FA00BB52AD /* LaunchScreen.storyboard */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		EAD553D028B550B900BB52AD /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				EAD553CE28B550B600BB52AD /* Extensions+UIView.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,8 +182,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA8EFE6728B696960066B94B /* CardView.swift in Sources */,
+				EA8EFE6428B6868E0066B94B /* HomeTopStackView.swift in Sources */,
+				EA8EFE6128B6857C0066B94B /* HomeBottomStackView.swift in Sources */,
 				EAD553BE28B546F500BB52AD /* ViewController.swift in Sources */,
 				EAD553BA28B546F500BB52AD /* AppDelegate.swift in Sources */,
+				EAD553CF28B550B700BB52AD /* Extensions+UIView.swift in Sources */,
 				EAD553BC28B546F500BB52AD /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
