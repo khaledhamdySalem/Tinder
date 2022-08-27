@@ -11,9 +11,11 @@ class RegistrationBody: UIView {
     
     // Clousre
     var didEditTextFiled: ((UITextField) -> Void)?
-    
+    var didTabOnRegisterButton: (() -> Void)?
+    var didTabOnSelectPhotoButton: (() -> Void)?
     // UI Components
-    let selectPhotoButton: UIButton = {
+   
+    lazy var selectPhotoButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Select Photo", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 32, weight: .heavy)
@@ -21,10 +23,13 @@ class RegistrationBody: UIView {
         button.setTitleColor(.black, for: .normal)
         button.heightAnchor.constraint(equalToConstant: 275).isActive = true
         button.layer.cornerRadius = 16
+        button.contentMode = .scaleAspectFill
+        button.clipsToBounds = true
+        button.addTarget(self, action: #selector(handleSelectPhoto), for: .touchUpInside)
         return button
     }()
     
-    let fullNameTextField: CustomTextField = {
+    lazy var fullNameTextField: CustomTextField = {
         let tf = CustomTextField(padding: 24, height: 44)
         tf.placeholder = "Enter full name"
         tf.backgroundColor = .white
@@ -33,7 +38,7 @@ class RegistrationBody: UIView {
         return tf
     }()
     
-    let emailTextField: CustomTextField = {
+    lazy var emailTextField: CustomTextField = {
         let tf = CustomTextField(padding: 24, height: 44)
         tf.placeholder = "Enter email"
         tf.keyboardType = .emailAddress
@@ -43,7 +48,7 @@ class RegistrationBody: UIView {
         return tf
     }()
     
-    let passwordTextField: CustomTextField = {
+    lazy var passwordTextField: CustomTextField = {
         let tf = CustomTextField(padding: 24, height: 44)
         tf.placeholder = "Enter password"
         tf.isSecureTextEntry = true
@@ -53,17 +58,17 @@ class RegistrationBody: UIView {
         return tf
     }()
     
-    let registerButton: UIButton = {
+    lazy var registerButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Register", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .heavy)
-//        button.backgroundColor = #colorLiteral(red: 0.8235294118, green: 0, blue: 0.3254901961, alpha: 1)
         button.backgroundColor = .gray
         button.setTitleColor(UIColor.lightGray, for: .normal)
         button.heightAnchor.constraint(equalToConstant: 44).isActive = true
         button.layer.cornerRadius = 22
         button.isEnabled = false
+        button.addTarget(self, action: #selector(handleRegister), for: .touchUpInside)
         return button
     }()
     
@@ -116,5 +121,15 @@ class RegistrationBody: UIView {
     @objc
     fileprivate func handleEditText(textfiled: UITextField) {
         didEditTextFiled?(textfiled)
+    }
+    
+    @objc
+    fileprivate func handleRegister() {
+        didTabOnRegisterButton?()
+    }
+    
+    @objc
+    fileprivate func handleSelectPhoto() {
+        didTabOnSelectPhotoButton?()
     }
 }

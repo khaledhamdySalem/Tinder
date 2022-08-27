@@ -6,18 +6,23 @@
 //
 
 import UIKit
+import FirebaseAuth
+import FirebaseStorage
+import JGProgressHUD
 
 class RegistrationVC: UIViewController {
     
+    // MARK: -- View
     let body = RegistrationBody()
     var registerModel = RegistrationViewModel()
     
+    // MARK: -- LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         configureBody()
         setupNotificationObservers()
         addTapGesture()
-        handleEditTextFiled()
+        setActions()
         setupRegistrationViewModelObserver()
     }
     
@@ -25,13 +30,7 @@ class RegistrationVC: UIViewController {
         super.viewWillDisappear(animated)
         NotificationCenter.default.removeObserver(self)
     }
-    
-    
-    fileprivate func setupNotificationObservers() {
-        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(handleDismissKeyboard), name: UIResponder.keyboardWillHideNotification, object: nil)
-    }
-    
+        
     fileprivate func setupRegistrationViewModelObserver() {
         registerModel.isFormValidObserver = { [weak self] isFormValid in
             
@@ -45,11 +44,29 @@ class RegistrationVC: UIViewController {
                 self.enableOrDisableRegisterButton(backgroundColor: .gray, titleColor: .lightGray)
             }
         }
+        
+        registerModel.binableImage.bind { [weak self] image in
+            self?.body.selectPhotoButton.setImage(image?.withRenderingMode(.alwaysOriginal), for: .normal)
+        }
+        
+        registerModel.binableRegistering.bind { [weak self] isRegister in
+            if isRegister == true {
+                self?.registerHUD.textLabel.text = "Register"
+                self?.registerHUD.show(in: self?.view ?? UIView())
+            } else {
+                self?.registerHUD.dismiss()
+            }
+        }
     }
     
     fileprivate func enableOrDisableRegisterButton(backgroundColor: UIColor, titleColor: UIColor) {
         self.body.registerButton.backgroundColor = backgroundColor
         self.body.registerButton.setTitleColor(titleColor, for: .normal)
+    }
+    
+    fileprivate func setupNotificationObservers() {
+        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handleDismissKeyboard), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     @objc
@@ -64,6 +81,7 @@ class RegistrationVC: UIViewController {
         self.view.transform = CGAffineTransform(translationX: 0, y: -differance - 8)
         
     }
+        
     
     fileprivate func addTapGesture() {
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleDismissKeyboard)))
@@ -76,6 +94,47 @@ class RegistrationVC: UIViewController {
             self?.view.transform = .identity
         }
     }
+    
+    // MARK: -- Handle Edit TextFiled
+    fileprivate func handleChangeTextFiled(_ textfiled: UITextField) {
+        if textfiled == body.fullNameTextField {
+            registerModel.fullName = textfiled.text
+        } else if textfiled == body.emailTextField {
+            registerModel.email = textfiled.text
+        } else {
+            registerModel.password = textfiled.text
+        }
+    }
+    
+    // MARK: --
+    fileprivate func handleSelectPhoto() {
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.delegate = self
+        present(imagePickerController, animated: true)
+    }
+    
+    let registerHUD =  JGProgressHUD(style: .dark)
+    
+    // MARK: --  Handle Register Button Action
+    fileprivate func handleRegisterAction() {
+        handleDismissKeyboard()
+        registerModel.binableRegistering.value = true
+        registerModel.performRegistrating { [weak self] err in
+            if let err = err {
+                self?.showHUDWithError(error: err)
+                return
+            }
+        }
+    }
+    
+    fileprivate func showHUDWithError(error: Error) {
+        registerHUD.dismiss()
+        let hud = JGProgressHUD(style: .dark)
+        hud.textLabel.text = "Failed Registration"
+        hud.detailTextLabel.text = error.localizedDescription
+        hud.show(in: self.view)
+        hud.dismiss(afterDelay: 4)
+    }
 }
 
 // MARK: -- Configure Body View
@@ -86,21 +145,32 @@ extension RegistrationVC {
     }
 }
 
-// MARK: -- Handle Editing TextFiled
+// MARK: -- SetActions
 extension RegistrationVC {
-    fileprivate func handleEditTextFiled() {
+    fileprivate func setActions() {
         body.didEditTextFiled = { [weak self] textfiled in
             self?.handleChangeTextFiled(textfiled)
         }
+        
+        body.didTabOnRegisterButton = { [weak self] in
+            self?.handleRegisterAction()
+        }
+        
+        body.didTabOnSelectPhotoButton = { [weak self] in
+            self?.handleSelectPhoto()
+        }
+    }
+}
+
+// MARK: -- PickerImage Delegate
+extension RegistrationVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        let image = info[.originalImage] as? UIImage
+        registerModel.binableImage.value = image
+        dismiss(animated: true)
     }
     
-    fileprivate func handleChangeTextFiled(_ textfiled: UITextField) {
-        if textfiled == body.fullNameTextField {
-            registerModel.fullName = textfiled.text
-        } else if textfiled == body.emailTextField {
-            registerModel.email = textfiled.text
-        } else {
-            registerModel.password = textfiled.text
-        }
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true)
     }
 }
