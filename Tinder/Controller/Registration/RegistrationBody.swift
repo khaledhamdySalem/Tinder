@@ -9,6 +9,9 @@ import UIKit
 
 class RegistrationBody: UIView {
     
+    // Clousre
+    var didEditTextFiled: ((UITextField) -> Void)?
+    
     // UI Components
     let selectPhotoButton: UIButton = {
         let button = UIButton(type: .system)
@@ -25,6 +28,8 @@ class RegistrationBody: UIView {
         let tf = CustomTextField(padding: 24, height: 44)
         tf.placeholder = "Enter full name"
         tf.backgroundColor = .white
+        tf.addTarget(self, action: #selector(handleEditText), for: .editingChanged)
+        tf.tag = 0
         return tf
     }()
     
@@ -33,6 +38,8 @@ class RegistrationBody: UIView {
         tf.placeholder = "Enter email"
         tf.keyboardType = .emailAddress
         tf.backgroundColor = .white
+        tf.addTarget(self, action: #selector(handleEditText), for: .editingChanged)
+        tf.tag = 1
         return tf
     }()
     
@@ -41,6 +48,8 @@ class RegistrationBody: UIView {
         tf.placeholder = "Enter password"
         tf.isSecureTextEntry = true
         tf.backgroundColor = .white
+        tf.addTarget(self, action: #selector(handleEditText), for: .editingChanged)
+        tf.tag = 2
         return tf
     }()
     
@@ -49,9 +58,12 @@ class RegistrationBody: UIView {
         button.setTitle("Register", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .heavy)
-        button.backgroundColor = #colorLiteral(red: 0.8235294118, green: 0, blue: 0.3254901961, alpha: 1)
+//        button.backgroundColor = #colorLiteral(red: 0.8235294118, green: 0, blue: 0.3254901961, alpha: 1)
+        button.backgroundColor = .gray
+        button.setTitleColor(UIColor.lightGray, for: .normal)
         button.heightAnchor.constraint(equalToConstant: 44).isActive = true
         button.layer.cornerRadius = 22
+        button.isEnabled = false
         return button
     }()
     
@@ -99,5 +111,10 @@ class RegistrationBody: UIView {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    @objc
+    fileprivate func handleEditText(textfiled: UITextField) {
+        didEditTextFiled?(textfiled)
     }
 }

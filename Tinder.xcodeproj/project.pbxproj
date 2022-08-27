@@ -13,6 +13,7 @@
 		EA6AA4DB28B93DDC008DB84B /* RegistrationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA6AA4DA28B93DDC008DB84B /* RegistrationVC.swift */; };
 		EA6AA4DD28B94316008DB84B /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA6AA4DC28B94316008DB84B /* CustomTextField.swift */; };
 		EA6AA4E228B94356008DB84B /* RegistrationBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA6AA4E128B94356008DB84B /* RegistrationBody.swift */; };
+		EA6AA4E428B9EF33008DB84B /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA6AA4E328B9EF33008DB84B /* RegistrationViewModel.swift */; };
 		EA8EFE6128B6857C0066B94B /* HomeBottomStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8EFE6028B6857C0066B94B /* HomeBottomStackView.swift */; };
 		EA8EFE6428B6868E0066B94B /* HomeTopStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8EFE6328B6868E0066B94B /* HomeTopStackView.swift */; };
 		EA8EFE6728B696960066B94B /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8EFE6628B696960066B94B /* CardView.swift */; };
@@ -32,6 +33,7 @@
 		EA6AA4DA28B93DDC008DB84B /* RegistrationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationVC.swift; sourceTree = "<group>"; };
 		EA6AA4DC28B94316008DB84B /* CustomTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		EA6AA4E128B94356008DB84B /* RegistrationBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationBody.swift; sourceTree = "<group>"; };
+		EA6AA4E328B9EF33008DB84B /* RegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewModel.swift; sourceTree = "<group>"; };
 		EA8EFE6028B6857C0066B94B /* HomeBottomStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeBottomStackView.swift; sourceTree = "<group>"; };
 		EA8EFE6328B6868E0066B94B /* HomeTopStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTopStackView.swift; sourceTree = "<group>"; };
 		EA8EFE6628B696960066B94B /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
@@ -94,6 +96,7 @@
 			isa = PBXGroup;
 			children = (
 				EA6AA4DA28B93DDC008DB84B /* RegistrationVC.swift */,
+				EA6AA4E328B9EF33008DB84B /* RegistrationViewModel.swift */,
 				EA6AA4E128B94356008DB84B /* RegistrationBody.swift */,
 			);
 			path = Registration;
@@ -243,6 +246,7 @@
 				EA6AA4D728B8B083008DB84B /* Advertiser.swift in Sources */,
 				EA8EFE6728B696960066B94B /* CardView.swift in Sources */,
 				EA8EFE6428B6868E0066B94B /* HomeTopStackView.swift in Sources */,
+				EA6AA4E428B9EF33008DB84B /* RegistrationViewModel.swift in Sources */,
 				EA8EFE6128B6857C0066B94B /* HomeBottomStackView.swift in Sources */,
 				EAD553BE28B546F500BB52AD /* HomeVC.swift in Sources */,
 				EA6AA4D228B89F4F008DB84B /* User.swift in Sources */,
